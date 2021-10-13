@@ -1,0 +1,20 @@
+<div *ngIf="posts$" class="card">
+  <div class="card-header">Featured</div>
+  <div class="card-body" *ngFor="let post of posts$ | async | sort">
+    <h5 class="card-title">{{ post.title }}</h5>
+    <p class="card-text">
+      {{ post.body }}
+
+    </p>
+    <button (click)="incrementPost(post)" class="btn btn-outline-success">
+      👍
+    </button>
+    <button (click)="decrementPost(post)" class="btn btn-outline-danger">
+      👎
+    </button>
+    <b>{{ post.points }}</b>
+    <button (click)="delPost(post)">Remove</button>
+    <div class="card-footer text-muted">2 days ago</div>
+
+  </div>
+</div>
