@@ -26,3 +26,9 @@ export class DecrementPostPoint {
 
   constructor(public payload: Post) {}
 }
+
+export class AddComment {
+  static readonly type="[Post.Comment] Add Comment"
+
+  constructor(public payload: Post){}
+}

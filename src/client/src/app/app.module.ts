@@ -14,6 +14,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { SortPipe } from './redux/sort.pipe'
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -29,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     MatTabsModule,
     MatInputModule,
+    FormsModule,
     NgxsModule.forRoot([
       PostState
     ]),

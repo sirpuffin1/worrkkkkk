@@ -30,4 +30,10 @@ export class PostService {
     return this.api.post<{data: Post}>('decrement-post-points', post).pipe(map(res => res.data))
   }
 
+  createComment(post: Post) {
+    return this.api.post<{data: Post}>('create-comment', post).pipe(map(res => res.data))
+  }
+
+
+
 }

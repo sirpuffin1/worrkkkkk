@@ -1,6 +1,6 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { Post } from '../models/post';
-import { AddPost, DecrementPostPoint, GetPosts, IncrementPostPoint, RemovePost } from '../actions/post.action';
+import { AddComment, AddPost, DecrementPostPoint, GetPosts, IncrementPostPoint, RemovePost } from '../actions/post.action';
 import { Injectable } from '@angular/core';
 import { PostService } from '../services/post.service';
 import { filter, tap } from 'rxjs/operators';
@@ -93,6 +93,19 @@ Decrement(
     setState({
       posts: getState().posts.map((a) => a._id != payload._id? a : result)
     })}))
+  }
+
+  @Action(AddComment)
+  Add(
+    {getState, patchState }: StateContext<PostStateModel>,
+    { payload }: AddComment
+  ) {
+    return this.postService.createPost(payload).pipe(tap((result) => {
+      const state = getState();
+      patchState({
+        posts: [...state.posts, result]
+        })
+    }))
   }
 
 }

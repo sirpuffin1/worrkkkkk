@@ -29,11 +29,12 @@ app.get('/posts', function(req, res) {
 })
 
 app.post('/create-post', function(req, res){
-  const {title, body, points} = req.body;
+  const {title, body, points, comments} = req.body;
   const post = new PostModel({
     title,
     body,
-    points
+    points,
+    comments
   });
   post.save()
   .then((data) => {
@@ -45,8 +46,16 @@ app.post('/create-post', function(req, res){
   })
 })
 
+app.post('/create-comment', function(req, res) {
+    const {title, body, points, comments} = req.body;
+  PostModel.findByIdAndUpdate(req.body._id).then((data) => {
+    console.log(data);
+    res.json({data})
+  })
+})
+
 app.post('/increment-post-points', function(req, res){
-    const {title, body, points} = req.body;
+    const {title, body, points, comments} = req.body;
      PostModel.findByIdAndUpdate(req.body._id, {
      $inc:{ points: 1}
     }, {new: true})
