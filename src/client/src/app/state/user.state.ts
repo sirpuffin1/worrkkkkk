@@ -3,8 +3,8 @@ import { Post } from '../models/post';
 import { AddComment, AddPost, DecrementPostPoint, GetPosts, IncrementPostPoint, RemovePost } from '../actions/post.action';
 import { Injectable } from '@angular/core';
 import { PostService } from '../services/post.service';
-import { filter, tap } from 'rxjs/operators';
-import { state } from '@angular/animations';
+import {  tap } from 'rxjs/operators';
+
 
 
 export class PostStateModel {
