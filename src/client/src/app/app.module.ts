@@ -15,8 +15,16 @@ import { MatInputModule } from '@angular/material/input';
 import { SortPipe } from './redux/sort.pipe'
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './components/home/home.component';
+import { RouterModule, Routes } from '@angular/router';
 
 
+const appRoutes: Routes = [
+  { path: 'home', component: IndexComponent},
+  { path: 'create', component: CreateComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full'},
+  { path: '**', redirectTo: '/home', pathMatch: 'full'}
+]
 
 @NgModule({
   declarations: [
@@ -24,6 +32,7 @@ import { FormsModule } from '@angular/forms';
     CreateComponent,
     IndexComponent,
     SortPipe,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +47,11 @@ import { FormsModule } from '@angular/forms';
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule.forRoot(
+      appRoutes,
+      {enableTracing: true}
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
