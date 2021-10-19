@@ -1,4 +1,5 @@
 import { Post } from "../models/post";
+import { Comment} from "../models/comment"
 
 export class GetPosts {
   static readonly type="[Post] Get Posts"
@@ -30,5 +31,5 @@ export class DecrementPostPoint {
 export class AddComment {
   static readonly type="[Post.Comment] Add Comment"
 
-  constructor(public payload: Post){}
+  constructor(public payload: Comment){}
 }

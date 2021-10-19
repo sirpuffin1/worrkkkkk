@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { ApiService } from "./api.service";
 import { map } from 'rxjs/operators'
 import { Post } from "../models/post";
+import { Comment } from "../models/comment";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class PostService {
   }
 
   createPost(post: Post) {
-    return this.api.post<{data: Post}>('create-post', post).pipe(map(res => res.data))
+    return this.api.post<{data: Post}, Post>('create-post', post).pipe(map(res => res.data))
   }
 
   deletePost(post: Post) {
@@ -23,15 +24,15 @@ export class PostService {
   }
 
   incrementPostPoints(post: Post) {
-    return this.api.post<{data: Post}>('increment-post-points', post).pipe(map(res => res.data))
+    return this.api.post<{data: Post}, Post>('increment-post-points', post).pipe(map(res => res.data))
   }
 
   decrementPostPoints(post: Post) {
-    return this.api.post<{data: Post}>('decrement-post-points', post).pipe(map(res => res.data))
+    return this.api.post<{data: Post}, Post>('decrement-post-points', post).pipe(map(res => res.data))
   }
 
-  createComment(post: Post) {
-    return this.api.post<{data: Post}>('create-comment', post).pipe(map(res => res.data))
+  createComment(comment: Comment) {
+    return this.api.post<{data: Post}, Comment>('create-comment', comment).pipe(map(res => res.data))
   }
 
 

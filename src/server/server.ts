@@ -41,14 +41,15 @@ app.post('/create-post', function(req, res){
     res.json({data})
   })
   .catch(err => {
+    console.log(err);
     res.status(501);
     res.json({errors: err})
   })
 })
 
 app.post('/create-comment', function(req, res) {
-    const {title, body, points, comments} = req.body;
-  PostModel.findByIdAndUpdate(req.body._id).then((data) => {
+    const {message} = req.body;
+  PostModel.findByIdAndUpdate(req.body._id, {$push: {comments:{message}}}, {new: true}).then((data) => {
     console.log(data);
     res.json({data})
   })

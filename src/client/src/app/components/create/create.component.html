@@ -23,14 +23,24 @@
             #content
             placeholder="Ex. It makes me feel..."
             [(ngModel)]="formValue"
-              name="formValue"
+            name="formValue"
           ></textarea>
         </mat-form-field>
+        <h4>Choose a forum</h4>
+        <mat-select>
+          <mat-option
+            *ngFor="let category of categories"
+            [value]="category.value"
+          >
+            {{ category.viewValue }}
+          </mat-option>
+        </mat-select>
       </form>
+      <br />
       <button
         (click)="addPost(title.value, content.value)"
-        (click)="value=''"
-        (click)="formValue=''"
+        (click)="value = ''"
+        (click)="formValue = ''"
         class="btn btn-primary"
         routerLink="/home"
         routerLinkActive="active"
@@ -53,7 +63,7 @@
             #url
             placeholder="www.google.com"
             [(ngModel)]="urlValue"
-            name = "urlValue"
+            name="urlValue"
           />
           <mat-error
             *ngIf="
@@ -63,12 +73,24 @@
           >
             Please enter a valid Url
           </mat-error>
-
+        </mat-form-field>
+        <h4>Choose a forum</h4>
+        <mat-form-field appearance="fill">
+          <mat-label>Forums</mat-label>
+          <mat-select [(ngModel)]="selectedValue" name="selectedValue">
+            <mat-option
+              #category
+              *ngFor="let category of categories"
+              [value]="category.value"
+            >
+              {{ category.viewValue }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </form>
       <button
         (click)="addPost('Url:', url.value)"
-        (click)="urlValue=''"
+        (click)="urlValue = ''"
         [disabled]="urlFormControl.invalid"
         class="btn btn-primary"
         routerLink="/home"

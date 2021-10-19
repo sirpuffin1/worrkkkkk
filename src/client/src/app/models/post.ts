@@ -5,4 +5,5 @@ export interface Post {
   body: string
   points: number
   comments: []
+  category: string
 }

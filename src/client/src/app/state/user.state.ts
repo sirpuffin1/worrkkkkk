@@ -100,10 +100,10 @@ Decrement(
     {getState, patchState }: StateContext<PostStateModel>,
     { payload }: AddComment
   ) {
-    return this.postService.createPost(payload).pipe(tap((result) => {
+    return this.postService.createComment(payload).pipe(tap((result) => {
       const state = getState();
       patchState({
-        posts: [...state.posts, result]
+        posts: [...state.posts.map(post => post._id === result._id ? result: post)]
         })
     }))
   }

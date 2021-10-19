@@ -8,7 +8,8 @@ const postSchema = new mongoose.Schema<Post>({
   title: {type: String, required: true},
   body: {type: String, required: true},
   points: {type: Number, required: true},
-  comments: [commentSchema]
+  comments: [commentSchema],
+  category: {type: String, required: false}
 })
 
 

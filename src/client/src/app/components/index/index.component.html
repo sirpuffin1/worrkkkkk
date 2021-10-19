@@ -4,6 +4,7 @@
     <h5 class="card-title">{{ post.title }}</h5>
     <p class="card-text" *ngIf="post.title.includes('Url:')">
       <a href="https://{{ post.body }}" target="_blank">{{ post.body }}</a>
+
     </p>
     <p class="card-text" *ngIf="!post.title.includes('Url:')">
       {{ post.body }}
@@ -17,6 +18,9 @@
     </button>
     <b>{{ post.points }}</b>
     <button (click)="delPost(post)" class="btn btn-danger">Remove</button>
-    <div class="card-footer text-muted">2 days ago</div>
+    <input type="text" #comment>
+    <button (click)="addComment(post, comment.value)">reply</button>
+
+    </div>
   </div>
-</div>
+

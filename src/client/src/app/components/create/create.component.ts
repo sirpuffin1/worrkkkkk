@@ -3,6 +3,11 @@ import { Store } from '@ngxs/store';
 import { FormControl, Validators } from '@angular/forms';
 import { AddPost } from 'src/app/actions/post.action';
 
+interface Category {
+  value: string
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -10,6 +15,13 @@ import { AddPost } from 'src/app/actions/post.action';
 })
 export class CreateComponent implements OnInit {
 
+  selectedValue!: string;
+
+  categories: Category[] = [
+    {value: 'Spider-man', viewValue: 'Spider-man'},
+    {value: 'General', viewValue: 'General'},
+    {value: 'coding', viewValue: 'Coding'}
+  ]
    value = ''
    formValue = ''
    urlValue = ''
@@ -25,7 +37,7 @@ export class CreateComponent implements OnInit {
 
 
   addPost(title: string , body: string) {
-    this.store.dispatch(new AddPost({ title: title, body: body, points: 0, comments: []}));
+    this.store.dispatch(new AddPost({ title: title, body: body, points: 0, comments: [], category: ''}));
 
   }
 

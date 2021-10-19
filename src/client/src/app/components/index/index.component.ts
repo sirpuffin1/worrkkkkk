@@ -1,9 +1,10 @@
 import { Component,  OnInit } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { DecrementPostPoint, GetPosts, IncrementPostPoint, RemovePost } from 'src/app/actions/post.action';
+import { DecrementPostPoint, GetPosts, IncrementPostPoint, RemovePost, AddComment } from 'src/app/actions/post.action';
 import { Post } from 'src/app/models/post';
 import { PostState } from 'src/app/state/user.state';
+import { Comment } from 'src/app/models/comment';
 
 @Component({
   selector: 'app-index',
@@ -16,10 +17,17 @@ export class IndexComponent implements OnInit {
   @Select(PostState.getPostsList)
   posts$?: Observable<Post[]>;
 
+
+
   constructor(private store: Store) {
 
 
    }
+
+   addComment(post: Post, message: string) {
+     this.store.dispatch(new AddComment({_id: `${post._id}`, message}))
+   }
+
    delPost(post: Post) {
      this.store.dispatch(new RemovePost(post))
    }

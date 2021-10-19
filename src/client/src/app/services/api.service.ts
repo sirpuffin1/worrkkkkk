@@ -13,7 +13,7 @@ export class ApiService {
     return this.http.get<T>(this.baseUrl + resourceName)
   }
 
-  post<T>(resourceName: string, data: Postable ) {
+  post<T,D>(resourceName: string, data: D ) {
     return this.http.post<T>(this.baseUrl + resourceName, data)
   }
   delete<T>(resourceName: string) {
