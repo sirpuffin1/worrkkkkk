@@ -19,12 +19,16 @@ import { HomeComponent } from './components/home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { SpiderManComponent } from './components/spider-man/spider-man.component';
+import { CrimeComponent } from './components/crime/crime.component';
+import { CodingComponent } from './components/coding/coding.component';
 
 
 const appRoutes: Routes = [
   { path: 'home', component: IndexComponent},
   { path: 'create', component: CreateComponent},
   { path: 'f/spider-man', component: SpiderManComponent},
+  { path: 'f/coding', component: CodingComponent},
+  { path: 'f/crime', component: CrimeComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: '**', redirectTo: '/home', pathMatch: 'full'}
 ]
@@ -37,6 +41,8 @@ const appRoutes: Routes = [
     SortPipe,
     HomeComponent,
     SpiderManComponent,
+    CrimeComponent,
+    CodingComponent,
   ],
   imports: [
     BrowserModule,

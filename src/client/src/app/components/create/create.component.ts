@@ -19,7 +19,7 @@ export class CreateComponent implements OnInit {
 
   categories: Category[] = [
     {value: 'Spider-man', viewValue: 'Spider-man'},
-    {value: 'General', viewValue: 'General'},
+    {value: 'Crime', viewValue: 'Crime'},
     {value: 'Coding', viewValue: 'Coding'}
   ]
    value = ''
