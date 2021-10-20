@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { RouterModule, Routes } from '@angular/router';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 const appRoutes: Routes = [
@@ -40,6 +41,7 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatTabsModule,
     MatInputModule,
+    MatExpansionModule,
     FormsModule,
     NgxsModule.forRoot([
       PostState

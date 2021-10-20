@@ -17,6 +17,7 @@ export class IndexComponent implements OnInit {
   @Select(PostState.getPostsList)
   posts$?: Observable<Post[]>;
 
+  panelOpenState = false;
 
 
 

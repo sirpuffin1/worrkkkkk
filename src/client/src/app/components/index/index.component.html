@@ -20,9 +20,26 @@
     <button (click)="delPost(post)" class="btn btn-danger">Remove</button>
     <input type="text" #comment>
     <button (click)="addComment(post, comment.value)">reply</button>
-    <div class="card-body" *ngFor="let comment of post.comments">
-      <h5 class="card-title">Reply</h5>
-      {{comment.message}}
+    <div class="card-body">
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+
+          <p>This is the primary content of the panel.</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-description>
+              Comments
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div *ngFor="let comment of post.comments">
+          <h5 class="card-title">Reply</h5>
+            {{comment.message}}
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+
     </div>
     </div>
   </div>
