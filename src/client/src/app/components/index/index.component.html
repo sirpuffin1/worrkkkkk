@@ -20,7 +20,10 @@
     <button (click)="delPost(post)" class="btn btn-danger">Remove</button>
     <input type="text" #comment>
     <button (click)="addComment(post, comment.value)">reply</button>
-
+    <div class="card-body" *ngFor="let comment of post.comments">
+      <h5 class="card-title">Reply</h5>
+      {{comment.message}}
+    </div>
     </div>
   </div>
 

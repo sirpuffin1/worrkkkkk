@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { DecrementPostPoint, GetPosts, IncrementPostPoint, RemovePost, AddComment } from 'src/app/actions/post.action';
 import { Post } from 'src/app/models/post';
 import { PostState } from 'src/app/state/user.state';
-import { Comment } from 'src/app/models/comment';
+
 
 @Component({
   selector: 'app-index',
@@ -16,6 +16,7 @@ import { Comment } from 'src/app/models/comment';
 export class IndexComponent implements OnInit {
   @Select(PostState.getPostsList)
   posts$?: Observable<Post[]>;
+
 
 
 
