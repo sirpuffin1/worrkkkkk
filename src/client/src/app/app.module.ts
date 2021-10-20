@@ -18,11 +18,13 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { SpiderManComponent } from './components/spider-man/spider-man.component';
 
 
 const appRoutes: Routes = [
   { path: 'home', component: IndexComponent},
   { path: 'create', component: CreateComponent},
+  { path: 'f/spider-man', component: SpiderManComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: '**', redirectTo: '/home', pathMatch: 'full'}
 ]
@@ -34,6 +36,7 @@ const appRoutes: Routes = [
     IndexComponent,
     SortPipe,
     HomeComponent,
+    SpiderManComponent,
   ],
   imports: [
     BrowserModule,
