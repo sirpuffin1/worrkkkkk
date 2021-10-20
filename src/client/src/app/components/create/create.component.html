@@ -26,19 +26,26 @@
             name="formValue"
           ></textarea>
         </mat-form-field>
-        <h4>Choose a forum</h4>
-        <mat-select>
-          <mat-option
-            *ngFor="let category of categories"
-            [value]="category.value"
-          >
-            {{ category.viewValue }}
-          </mat-option>
-        </mat-select>
+        <mat-form-field appearance="fill">
+          <mat-label>Forums</mat-label>
+
+          <mat-select [(ngModel)]="selectedValue" name="selectedValue">
+            <mat-option
+              #category
+              *ngFor="let category of categories"
+              [value]="category.value"
+              [(ngModel)]="selectedValue"
+              name="selectedValue"
+            >
+              {{ category.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </form>
       <br />
+
       <button
-        (click)="addPost(title.value, content.value)"
+        (click)="addPost(title.value, content.value, selectedValue)"
         (click)="value = ''"
         (click)="formValue = ''"
         class="btn btn-primary"
@@ -74,7 +81,7 @@
             Please enter a valid Url
           </mat-error>
         </mat-form-field>
-        <h4>Choose a forum</h4>
+
         <mat-form-field appearance="fill">
           <mat-label>Forums</mat-label>
           <mat-select [(ngModel)]="selectedValue" name="selectedValue">
@@ -82,14 +89,17 @@
               #category
               *ngFor="let category of categories"
               [value]="category.value"
+              [(ngModel)]="selectedValue"
+              name="selectedValue"
             >
               {{ category.viewValue }}
             </mat-option>
           </mat-select>
+
         </mat-form-field>
       </form>
       <button
-        (click)="addPost('Url:', url.value)"
+        (click)="addPost('Url:', url.value, selectedValue)"
         (click)="urlValue = ''"
         [disabled]="urlFormControl.invalid"
         class="btn btn-primary"
@@ -98,7 +108,10 @@
       >
         Post
       </button>
+
+
     </div>
+
   </mat-tab>
   <mat-tab label="Media">
     <div class="example-large-box mat-elevation-z4">

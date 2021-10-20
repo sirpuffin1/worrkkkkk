@@ -21,7 +21,7 @@
     <input type="text" #comment>
     <button (click)="addComment(post, comment.value)">reply</button>
     <div class="card-body">
-      <mat-accordion>
+      <mat-accordion *ngIf="post.comments.length !== 0">
         <mat-expansion-panel hideToggle>
 
           <p>This is the primary content of the panel.</p>
@@ -33,7 +33,7 @@
               Comments
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <div *ngFor="let comment of post.comments">
+          <div  *ngFor="let comment of post.comments">
           <h5 class="card-title">Reply</h5>
             {{comment.message}}
           </div>

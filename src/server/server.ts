@@ -29,12 +29,13 @@ app.get('/posts', function(req, res) {
 })
 
 app.post('/create-post', function(req, res){
-  const {title, body, points, comments} = req.body;
+  const {title, body, points, comments, category} = req.body;
   const post = new PostModel({
     title,
     body,
     points,
-    comments
+    comments,
+    category
   });
   post.save()
   .then((data) => {

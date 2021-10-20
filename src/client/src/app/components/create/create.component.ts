@@ -20,7 +20,7 @@ export class CreateComponent implements OnInit {
   categories: Category[] = [
     {value: 'Spider-man', viewValue: 'Spider-man'},
     {value: 'General', viewValue: 'General'},
-    {value: 'coding', viewValue: 'Coding'}
+    {value: 'Coding', viewValue: 'Coding'}
   ]
    value = ''
    formValue = ''
@@ -36,8 +36,8 @@ export class CreateComponent implements OnInit {
 
 
 
-  addPost(title: string , body: string) {
-    this.store.dispatch(new AddPost({ title: title, body: body, points: 0, comments: [], category: ''}));
+  addPost(title: string , body: string, category: string) {
+    this.store.dispatch(new AddPost({ title: title, body: body, points: 0, comments: [], category: category}));
 
   }
 
