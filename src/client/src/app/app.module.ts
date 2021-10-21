@@ -12,6 +12,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatCardModule } from '@angular/material/card';
 import { SortPipe } from './redux/sort.pipe'
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -26,9 +28,9 @@ import { CodingComponent } from './components/coding/coding.component';
 const appRoutes: Routes = [
   { path: 'home', component: IndexComponent},
   { path: 'create', component: CreateComponent},
-  { path: 'f/spider-man', component: SpiderManComponent},
-  { path: 'f/coding', component: CodingComponent},
-  { path: 'f/crime', component: CrimeComponent},
+  { path: 'f/Spider-man', component: SpiderManComponent},
+  { path: 'f/Coding', component: CodingComponent},
+  { path: 'f/Crime', component: CrimeComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: '**', redirectTo: '/home', pathMatch: 'full'}
 ]
@@ -51,6 +53,8 @@ const appRoutes: Routes = [
     MatTabsModule,
     MatInputModule,
     MatExpansionModule,
+    MatDividerModule,
+    MatCardModule,
     FormsModule,
     NgxsModule.forRoot([
       PostState
