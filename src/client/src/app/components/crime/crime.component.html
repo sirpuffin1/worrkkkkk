@@ -4,6 +4,42 @@
   </div>
 </div>
 
+<div class="card-container">
+  <mat-card class="about">
+    <mat-card-header>
+      <div mat-card-avatar class="avatar-image"></div>
+      <mat-card-title>About Community</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>A forum for all things crime.</p>
+      <p>300k Fans</p>
+      <mat-divider [inset]="true"></mat-divider>
+      Created 10/21/2021
+      <br>
+      <br>
+      <button class="create-button" routerLink="/create">Create Post</button>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="rules">
+    <mat-card-header>
+      <mat-card-title>f/Crime Rules</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <ul>
+        <li>No snitching</li>
+        <mat-divider></mat-divider>
+        <li>Crime stuff only</li>
+        <mat-divider></mat-divider>
+        <li>Keep it cool</li>
+
+      </ul>
+    </mat-card-content>
+
+  </mat-card>
+
+</div>
+
 <div *ngIf="posts$" class="card">
   <div class="card-header">Latest and greatest</div>
   <div class="card-body" *ngFor="let post of posts$ | async | sort">
