@@ -2,11 +2,17 @@ import express from 'express'
 import cors from 'cors'
 import { PostModel } from './schemas/post.schema.js'
 import mongoose from 'mongoose'
+import path from 'path';
+import dotenv from 'dotenv';
+
+dotenv.config()
+console.log(process.env.MONGO_URI);
 
 const app = express();
-const PORT = 3501;
+const PORT = 3000;
+const __dirname = path.resolve();
 
-mongoose.connect('mongodb://localhost:27017/test')
+mongoose.connect(`${process.env.MONGO_URI}`)
 .then(() => {
   console.log('Connected to DB Successfully');
 })
@@ -15,11 +21,10 @@ mongoose.connect('mongodb://localhost:27017/test')
 app.use(cors());
 app.use(express.json());
 
-app.get('/', function(req, res) {
-  res.json({message:'test'})
-})
+const clientPath = path.join(__dirname, '/dist/client');
+app.use(express.static(clientPath));
 
-app.get('/posts', function(req, res) {
+app.get('/api/posts', function(req, res) {
   PostModel.find()
   .then(data => res.json({data}))
   .catch(err => {
@@ -28,7 +33,7 @@ app.get('/posts', function(req, res) {
   })
 })
 
-app.post('/create-post', function(req, res){
+app.post('/api/create-post', function(req, res){
   const {title, body, points, comments, category} = req.body;
   const post = new PostModel({
     title,
@@ -48,7 +53,7 @@ app.post('/create-post', function(req, res){
   })
 })
 
-app.post('/create-comment', function(req, res) {
+app.post('/api/create-comment', function(req, res) {
     const {message} = req.body;
   PostModel.findByIdAndUpdate(req.body._id, {$push: {comments:{message}}}, {new: true}).then((data) => {
     console.log(data);
@@ -56,7 +61,7 @@ app.post('/create-comment', function(req, res) {
   })
 })
 
-app.post('/increment-post-points', function(req, res){
+app.post('/api/increment-post-points', function(req, res){
     const {title, body, points, comments} = req.body;
      PostModel.findByIdAndUpdate(req.body._id, {
      $inc:{ points: 1}
@@ -70,7 +75,7 @@ app.post('/increment-post-points', function(req, res){
     })
   })
 
-  app.post('/decrement-post-points', function(req, res){
+  app.post('/api/decrement-post-points', function(req, res){
     const {title, body, points} = req.body;
      PostModel.findByIdAndUpdate(req.body._id, {
      $inc:{ points: -1}
@@ -84,7 +89,7 @@ app.post('/increment-post-points', function(req, res){
     })
   })
 
-app.delete('/delete-post/:id', function(req, res) {
+app.delete('/api/delete-post/:id', function(req, res) {
   const _id = req.params.id;
   PostModel.findByIdAndDelete(_id).then((data) => {
     console.log(data);
@@ -95,3 +100,13 @@ app.delete('/delete-post/:id', function(req, res) {
 app.listen(PORT, function() {
   console.log( `starting at localhost http://localhost:${PORT}`)
 })
+
+app.all("/api*", function (req, res) {
+  res.sendStatus(404);
+});
+
+app.all("*", function (req, res) {
+  const filePath = path.join(__dirname, '/dist/client/index.html');
+  console.log(filePath);
+  res.sendFile(filePath);
+});

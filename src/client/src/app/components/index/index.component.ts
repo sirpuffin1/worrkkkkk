@@ -48,4 +48,12 @@ export class IndexComponent implements OnInit {
   }
 
 }
+//"dev-server:compile": "rm -rf ./dist/server/ && rm -rf ./dist/shared/ && tsc -w",
+// const clientPath = path.join(__dirname, '/dist/client');
+// app.use(express.static(clientPath));
+// '/dist/client/index.html');
+//   console.log(filePath);
+//   res.sendFile(filePath);
+// });
+
 
