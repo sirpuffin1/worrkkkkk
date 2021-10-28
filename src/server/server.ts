@@ -98,7 +98,7 @@ app.delete('/api/delete-post/:id', function(req, res) {
 })
 
 app.listen(PORT, function() {
-  console.log( `starting at localhost http://localhost:${PORT}`)
+  console.log( `starting at localhost http://localhost:${PORT}`, process.env.MONGO_URI)
 })
 
 app.all("/api*", function (req, res) {

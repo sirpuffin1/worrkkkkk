@@ -3,10 +3,13 @@ import cors from 'cors';
 import { PostModel } from './schemas/post.schema.js';
 import mongoose from 'mongoose';
 import path from 'path';
+import dotenv from 'dotenv';
+dotenv.config();
+console.log(process.env.MONGO_URI);
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const __dirname = path.resolve();
-mongoose.connect('mongodb://localhost:27017/test')
+mongoose.connect(`${process.env.MONGO_URI}`)
     .then(() => {
     console.log('Connected to DB Successfully');
 })
@@ -83,7 +86,7 @@ app.delete('/api/delete-post/:id', function (req, res) {
     });
 });
 app.listen(PORT, function () {
-    console.log(`starting at localhost http://localhost:${PORT}`);
+    console.log(`starting at localhost http://localhost:${PORT}`, process.env.MONGO_URI);
 });
 app.all("/api*", function (req, res) {
     res.sendStatus(404);
