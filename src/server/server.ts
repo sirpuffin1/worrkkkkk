@@ -9,7 +9,7 @@ dotenv.config()
 console.log(process.env.MONGO_URI);
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const __dirname = path.resolve();
 
 mongoose.connect(`${process.env.MONGO_URI}`)
